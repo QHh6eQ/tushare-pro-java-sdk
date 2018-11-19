@@ -6,6 +6,13 @@ Tushare Pro Java SDK
 Java 8
 
 ### 快速上手
+```xml
+<dependency>
+  <groupId>com.github.qhh6eq</groupId>
+  <artifactId>tushare-pro-java-sdk</artifactId>
+  <version>1.0.0-RELEASE</version>
+</dependency>
+```
 ```java
 TusharePro.setGlobal(new TusharePro.Builder()
                 .setToken("**********")  // 你的token
