@@ -75,7 +75,7 @@ TushareProService.stockBasic(new Request<StockBasicEntity>() {}  // 使用全局
 // 一个完整的例子
 TushareProService.stockBasic(
         new Request<StockBasicEntity>(builder.copy()  // 将配置拷贝
-                .setMaxRetries(5)  // 设置重试次数, 默认为3
+                .setMaxRetries(5)  // 设置重试次数, 默认为0
                 .setRetrySleepTimeUnit(TimeUnit.SECONDS)  // 设置重试sleep单位, 默认毫秒
                 .setRetrySleepTimeOut(60L)  // 设置重试sleep时间, 默认为0
                 .setRequestExecutor(Executors.newSingleThreadExecutor((r -> {
