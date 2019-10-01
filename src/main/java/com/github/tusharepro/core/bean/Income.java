@@ -78,6 +78,41 @@ public interface Income extends BaseBean {
     }
 
     class Params {
+
+        public static final ts_code ts_code = new ts_code();  // 股票代码
+        public static class ts_code extends BaseRequestParam {
+            {key = "ts_code";}
+        }
+
+        public static final ann_date ann_date = new ann_date();  // 公告日期
+        public static class ann_date extends BaseRequestParam {
+            {key = "ann_date";}
+        }
+
+        public static final start_date start_date = new start_date();  // 公告开始日期
+        public static class start_date extends BaseRequestParam {
+            {key = "start_date";}
+        }
+
+        public static final end_date end_date = new end_date();  // 公告结束日期
+        public static class end_date extends BaseRequestParam {
+            {key = "end_date";}
+        }
+
+        public static final period period = new period();  // 报告期(每个季度最后一天的日期，比如20171231表示年报)
+        public static class period extends BaseRequestParam {
+            {key = "period";}
+        }
+
+        public static final report_type report_type = new report_type();  // 报告类型：见下方详细说明
+        public static class report_type extends BaseRequestParam {
+            {key = "report_type";}
+        }
+
+        public static final comp_type comp_type = new comp_type();  // 公司类型：1一般工商业 2银行 3保险 4证券
+        public static class comp_type extends BaseRequestParam {
+            {key = "comp_type";}
+        }
     }
 
 }

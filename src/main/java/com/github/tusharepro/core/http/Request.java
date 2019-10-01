@@ -5,10 +5,12 @@ import com.github.tusharepro.core.TusharePro;
 import com.github.tusharepro.core.bean.BaseBean;
 import com.github.tusharepro.core.common.KeyValue;
 import com.github.tusharepro.core.util.TypeUtil;
+import lombok.Data;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Data
 public abstract class Request<T extends BaseBean> {
 
     private String token;
@@ -102,43 +104,6 @@ public abstract class Request<T extends BaseBean> {
 
     public Request<T> param(KeyValue<String, ?> keyValue) {
         getParams().put(keyValue.key, keyValue.value);
-        return this;
-    }
-
-
-    public String getToken() {
-        return token;
-    }
-
-    protected Request setToken(String token) {
-        this.token = token;
-        return this;
-    }
-
-    public String getApi_name() {
-        return api_name;
-    }
-
-    protected Request setApi_name(String api_name) {
-        this.api_name = api_name;
-        return this;
-    }
-
-    public String getFields() {
-        return fields;
-    }
-
-    protected Request setFields(String fields) {
-        this.fields = fields;
-        return this;
-    }
-
-    public Map<String, Object> getParams() {
-        return params;
-    }
-
-    protected Request setParams(Map<String, Object> params) {
-        this.params = params;
         return this;
     }
 

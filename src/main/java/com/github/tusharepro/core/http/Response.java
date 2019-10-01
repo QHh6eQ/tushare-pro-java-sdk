@@ -1,31 +1,19 @@
 package com.github.tusharepro.core.http;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class Response {
 
+    @lombok.Data
     public static class Data {
 
         private List<String> fields;
         private List<List<?>> items;
+        private Boolean has_more;  // 分页
 
-        public List<String> getFields() {
-            return fields;
-        }
-
-        public Data setFields(List<String> fields) {
-            this.fields = fields;
-            return this;
-        }
-
-        public List<List<?>> getItems() {
-            return items;
-        }
-
-        public Data setItems(List<List<?>> items) {
-            this.items = items;
-            return this;
-        }
     }
 
     private String request_id;
@@ -33,39 +21,4 @@ public class Response {
     private String msg;
     private Data data;
 
-    public String getRequest_id() {
-        return request_id;
-    }
-
-    public Response setRequest_id(String request_id) {
-        this.request_id = request_id;
-        return this;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public Response setCode(Integer code) {
-        this.code = code;
-        return this;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public Response setMsg(String msg) {
-        this.msg = msg;
-        return this;
-    }
-
-    public Data getData() {
-        return data;
-    }
-
-    public Response setData(Data data) {
-        this.data = data;
-        return this;
-    }
 }
