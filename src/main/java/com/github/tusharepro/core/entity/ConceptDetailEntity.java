@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 概念股列表
+ * https://tushare.pro/document/2?doc_id=126
  */
 @Data
 @Entity

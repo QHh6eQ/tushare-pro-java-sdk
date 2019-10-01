@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 沪深股通十大成交股
+ * https://tushare.pro/document/2?doc_id=48
  */
 @Data
 @Entity

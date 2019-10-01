@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 每日指标
+ * https://tushare.pro/document/2?doc_id=32
  */
 @Data
 @Entity

@@ -9,6 +9,8 @@ import java.time.LocalDate;
 
 /**
  * 限售股解禁
+ * https://tushare.pro/document/2?doc_id=160
+ *
  * 一些首发股可能会超过5000行限制
  */
 @Data

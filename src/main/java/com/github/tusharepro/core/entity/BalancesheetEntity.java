@@ -1,7 +1,7 @@
 package com.github.tusharepro.core.entity;
+import lombok.Data;
 
 import com.github.tusharepro.core.bean.Balancesheet;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 资产负债表
+ * https://tushare.pro/document/2?doc_id=36
  */
 @Data
 @Entity
@@ -32,7 +33,7 @@ public class BalancesheetEntity implements Balancesheet {
     @Column(name = "report_type") protected String reportType;  // 报表类型：见下方详细说明
     @Column(name = "comp_type") protected String compType;  // 公司类型：1一般工商业 2银行 3保险 4证券
     @Column(name = "total_share") protected Double totalShare;  // 期末总股本
-    @Column(name = "cap_rese") protected Double capRese;  // 资本公积金 (元，下同)
+    @Column(name = "cap_rese") protected Double capRese;  // 资本公积金
     @Column(name = "undistr_porfit") protected Double undistrPorfit;  // 未分配利润
     @Column(name = "surplus_rese") protected Double surplusRese;  // 盈余公积金
     @Column(name = "special_rese") protected Double specialRese;  // 专项储备
@@ -162,5 +163,6 @@ public class BalancesheetEntity implements Balancesheet {
     @Column(name = "payables") protected Double payables;  // 应付款项
     @Column(name = "hfs_assets") protected Double hfsAssets;  // 持有待售的资产
     @Column(name = "hfs_sales") protected Double hfsSales;  // 持有待售的负债
+    @Column(name = "update_flag") protected String updateFlag;  // 更新标识
 
 }

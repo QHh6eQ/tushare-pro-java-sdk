@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * 指数基本信息
+ * https://tushare.pro/document/2?doc_id=94
  */
 @Data
 @Entity

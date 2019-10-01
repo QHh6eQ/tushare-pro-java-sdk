@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * 概念股分类
+ * https://tushare.pro/document/2?doc_id=125
  */
 @Data
 @Entity

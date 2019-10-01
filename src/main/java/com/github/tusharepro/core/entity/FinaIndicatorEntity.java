@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 财务指标数据
+ * https://tushare.pro/document/2?doc_id=79
  */
 @Data
 @Entity
@@ -138,6 +139,7 @@ public class FinaIndicatorEntity implements FinaIndicator {
     @Column(name = "op_to_liqdebt") protected Double opToLiqdebt;  // 营业利润／流动负债
     @Column(name = "op_to_debt") protected Double opToDebt;  // 营业利润／负债合计
     @Column(name = "roic_yearly") protected Double roicYearly;  // 年化投入资本回报率
+    @Column(name = "total_fa_trun") protected Double totalFaTrun;  // 固定资产合计周转率
     @Column(name = "profit_to_op") protected Double profitToOp;  // 利润总额／营业收入
     @Column(name = "q_opincome") protected Double qOpincome;  // 经营活动单季度净收益
     @Column(name = "q_investincome") protected Double qInvestincome;  // 价值变动单季度净收益
@@ -188,5 +190,6 @@ public class FinaIndicatorEntity implements FinaIndicator {
     @Column(name = "q_netprofit_qoq") protected Double qNetprofitQoq;  // 归属母公司股东的净利润环比增长率(%)(单季度)
     @Column(name = "equity_yoy") protected Double equityYoy;  // 净资产同比增长率
     @Column(name = "rd_exp") protected Double rdExp;  // 研发费用
+    @Column(name = "update_flag") protected String updateFlag;  // 更新标识
 
 }

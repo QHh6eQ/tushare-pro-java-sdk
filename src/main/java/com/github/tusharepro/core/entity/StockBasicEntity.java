@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 /**
  * 股票列表
+ * https://tushare.pro/document/2?doc_id=25
  */
 @Data
 @Entity
@@ -22,7 +23,7 @@ public class StockBasicEntity implements StockBasic {
     @Column(name = "industry") protected String industry;  // 所属行业
     @Column(name = "fullname") protected String fullname;  // 股票全称
     @Column(name = "enname") protected String enname;  // 英文全称
-    @Column(name = "market") protected String market;  // 市场类型 （主板/中小板/创业板）
+    @Column(name = "market") protected String market;  // 市场类型 （主板/中小板/创业板/科创板）
     @Column(name = "exchange") protected String exchange;  // 交易所代码
     @Column(name = "curr_type") protected String currType;  // 交易货币
     @Column(name = "list_status") protected String listStatus;  // 上市状态： L上市 D退市 P暂停上市

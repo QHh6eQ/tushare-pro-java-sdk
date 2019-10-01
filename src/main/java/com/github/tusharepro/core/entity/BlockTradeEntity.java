@@ -1,7 +1,7 @@
 package com.github.tusharepro.core.entity;
+import lombok.Data;
 
 import com.github.tusharepro.core.bean.BlockTrade;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 大宗交易
+ * https://tushare.pro/document/2?doc_id=161
  */
 @Data
 @Entity

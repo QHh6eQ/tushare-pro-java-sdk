@@ -1,7 +1,7 @@
 package com.github.tusharepro.core.entity;
+import lombok.Data;
 
 import com.github.tusharepro.core.bean.AdjFactor;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 复权因子
+ * https://tushare.pro/document/2?doc_id=28
  */
 @Data
 @Entity

@@ -28,6 +28,7 @@ import java.time.LocalDate;
  * 399016.SZ 深证创新(新)
  * 399300.SZ 沪深300指数
  * 399905.SZ 中证小盘500指数
+ * https://tushare.pro/document/2?doc_id=128
  */
 @Data
 @Entity

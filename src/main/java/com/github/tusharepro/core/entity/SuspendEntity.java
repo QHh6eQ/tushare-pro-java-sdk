@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 停复牌信息
+ * https://tushare.pro/document/2?doc_id=31
  */
 @Data
 @Entity

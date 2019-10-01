@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 股权质押统计数据
+ * https://tushare.pro/document/2?doc_id=110
  */
 @Data
 @Entity

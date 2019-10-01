@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * IPO新股列表
+ * https://tushare.pro/document/2?doc_id=123
  */
 @Data
 @Entity

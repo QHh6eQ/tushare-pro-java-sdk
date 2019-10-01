@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 /**
  * 沪深港通资金流向
+ * https://tushare.pro/document/2?doc_id=47
  */
 @Data
 @Entity

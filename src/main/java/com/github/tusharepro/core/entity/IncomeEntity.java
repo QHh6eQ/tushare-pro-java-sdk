@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 利润表
+ * https://tushare.pro/document/2?doc_id=33
  */
 @Data
 @Entity
@@ -33,7 +34,7 @@ public class IncomeEntity implements Income {
     @Column(name = "comp_type") protected String compType;  // 公司类型：1一般工商业 2银行 3保险 4证券
     @Column(name = "basic_eps") protected Double basicEps;  // 基本每股收益
     @Column(name = "diluted_eps") protected Double dilutedEps;  // 稀释每股收益
-    @Column(name = "total_revenue") protected Double totalRevenue;  // 营业总收入 (元，下同)
+    @Column(name = "total_revenue") protected Double totalRevenue;  // 营业总收入
     @Column(name = "revenue") protected Double revenue;  // 营业收入
     @Column(name = "int_income") protected Double intIncome;  // 利息收入
     @Column(name = "prem_earned") protected Double premEarned;  // 已赚保费
@@ -90,5 +91,6 @@ public class IncomeEntity implements Income {
     @Column(name = "insurance_exp") protected Double insuranceExp;  // 保险业务支出
     @Column(name = "undist_profit") protected Double undistProfit;  // 年初未分配利润
     @Column(name = "distable_profit") protected Double distableProfit;  // 可分配利润
+    @Column(name = "update_flag") protected String updateFlag;  // 更新标识，0未修改1更正过
 
 }

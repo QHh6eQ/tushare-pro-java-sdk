@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 融资融券交易汇总
+ * https://tushare.pro/document/2?doc_id=58
  */
 @Data
 @Entity
@@ -31,5 +32,6 @@ public class MarginEntity implements Margin {
     @Column(name = "rqye") protected Double rqye;  // 融券余额(元)
     @Column(name = "rqmcl") protected Double rqmcl;  // 融券卖出量(股,份,手)
     @Column(name = "rzrqye") protected Double rzrqye;  // 融资融券余额(元)
+    @Column(name = "rqyl") protected Double rqyl;  // 融券余量(股,份,手)
 
 }

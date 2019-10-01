@@ -1,7 +1,7 @@
 package com.github.tusharepro.core.entity;
+import lombok.Data;
 
 import com.github.tusharepro.core.bean.Cashflow;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 现金流量表
+ * https://tushare.pro/document/2?doc_id=44
  */
 @Data
 @Entity
@@ -115,5 +116,6 @@ public class CashflowEntity implements Cashflow {
     @Column(name = "end_bal_cash_equ") protected Double endBalCashEqu;  // 加:现金等价物的期末余额
     @Column(name = "beg_bal_cash_equ") protected Double begBalCashEqu;  // 减:现金等价物的期初余额
     @Column(name = "im_n_incr_cash_equ") protected Double imNIncrCashEqu;  // 现金及现金等价物净增加额(间接法)
+    @Column(name = "update_flag") protected String updateFlag;  // 更新标识
 
 }

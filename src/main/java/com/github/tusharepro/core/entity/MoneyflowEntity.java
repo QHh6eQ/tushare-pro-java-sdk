@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 个股资金流向
+ * https://tushare.pro/document/2?doc_id=170
  */
 @Data
 @Entity

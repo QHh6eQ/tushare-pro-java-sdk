@@ -9,6 +9,8 @@ import java.time.LocalDate;
 
 /**
  * 股票回购
+ * https://tushare.pro/document/2?doc_id=124
+ *
  * 数据有点问题?
  */
 @Data

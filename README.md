@@ -10,7 +10,7 @@ Tushare Pro Java SDK
 <dependency>
   <groupId>com.github.qhh6eq</groupId>
   <artifactId>tushare-pro-java-sdk</artifactId>
-  <version>2.0.0-RELEASE</version>
+  <version>2.0.1-RELEASE</version>
 </dependency>
 ```
 ```java
@@ -26,10 +26,6 @@ TushareProService.stockBasic(new Request<StockBasicEntity>() {}  // 使用全局
         .param("is_hs", "H"))  // 参数
         .forEach(System.out::println);
 ```
-
-### 与1.0.x的区别
-- 加入JPA注解, 无脑CRUD
-- Request分离 & 更改映射方式, 方便扩展
 
 ### 持久化
 - 自带的Entity类能完成绝大多数需求, 并且支持JPA. 具体可以关注 [tushare-pro-persistence](https://github.com/QHh6eQ/tushare-pro-persistence)

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 /**
  * 股票账户开户数据（旧）
+ * https://tushare.pro/document/2?doc_id=165
  */
 @Data
 @Entity

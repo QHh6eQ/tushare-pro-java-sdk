@@ -4,32 +4,44 @@ import com.github.tusharepro.core.http.BaseRequestParam;
 
 /**
  * 融资融券交易汇总
+ * https://tushare.pro/document/2?doc_id=58
  */
 public interface Margin extends BaseBean {
 
     String API_NAME = "margin";
 
-    class Fields {
-        public static final String trade_date = "trade_date";  // 交易日期
-        public static final String exchange_id = "exchange_id";  // 交易所代码（SSE上交所SZSE深交所）
-        public static final String rzye = "rzye";  // 融资余额(元)
-        public static final String rzmre = "rzmre";  // 融资买入额(元)
-        public static final String rzche = "rzche";  // 融资偿还额(元)
-        public static final String rqye = "rqye";  // 融券余额(元)
-        public static final String rqmcl = "rqmcl";  // 融券卖出量(股,份,手)
-        public static final String rzrqye = "rzrqye";  // 融资融券余额(元)
+    interface Fields {
+        String trade_date = "trade_date";  // 交易日期
+        String exchange_id = "exchange_id";  // 交易所代码（SSE上交所SZSE深交所）
+        String rzye = "rzye";  // 融资余额(元)
+        String rzmre = "rzmre";  // 融资买入额(元)
+        String rzche = "rzche";  // 融资偿还额(元)
+        String rqye = "rqye";  // 融券余额(元)
+        String rqmcl = "rqmcl";  // 融券卖出量(股,份,手)
+        String rzrqye = "rzrqye";  // 融资融券余额(元)
+        String rqyl = "rqyl";  // 融券余量(股,份,手)
     }
 
-    class Params {
+    interface Params {
 
-        public static final trade_date trade_date = new trade_date();  // 交易日期
-        public static class trade_date extends BaseRequestParam {
+        trade_date trade_date = new trade_date();  // 交易日期
+        class trade_date extends BaseRequestParam {
             {key = "trade_date";}
         }
 
-        public static final exchange_id exchange_id = new exchange_id();  // 交易所代码
-        public static class exchange_id extends BaseRequestParam {
+        exchange_id exchange_id = new exchange_id();  // 交易所代码
+        class exchange_id extends BaseRequestParam {
             {key = "exchange_id";}
+        }
+
+        start_date start_date = new start_date();  // 开始日期
+        class start_date extends BaseRequestParam {
+            {key = "start_date";}
+        }
+
+        end_date end_date = new end_date();  // 结束日期
+        class end_date extends BaseRequestParam {
+            {key = "end_date";}
         }
     }
 

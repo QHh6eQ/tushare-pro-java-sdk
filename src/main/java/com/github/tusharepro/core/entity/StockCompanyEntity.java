@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 /**
  * 上市公司基本信息
+ * https://tushare.pro/document/2?doc_id=112
  */
 @Data
 @Entity

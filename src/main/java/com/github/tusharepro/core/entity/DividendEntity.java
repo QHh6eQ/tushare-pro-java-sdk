@@ -10,6 +10,7 @@ import java.time.LocalDate;
 /**
  * 分红送股
  * ~~有脏数据, 要把 每股送转 和 每股分红（税前）都为0的剔除???~~
+ * https://tushare.pro/document/2?doc_id=103
  */
 @Data
 @Entity

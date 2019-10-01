@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 月线行情
+ * https://tushare.pro/document/2?doc_id=145
  */
 @Data
 @Entity

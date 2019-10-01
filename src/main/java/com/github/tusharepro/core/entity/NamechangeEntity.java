@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 股票曾用名
+ * https://tushare.pro/document/2?doc_id=100
  *
  * 有10000行限制 by 20190515
  */

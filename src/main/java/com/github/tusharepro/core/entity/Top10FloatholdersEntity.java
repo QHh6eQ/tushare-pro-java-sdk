@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 前十大流通股东
+ * https://tushare.pro/document/2?doc_id=62
  */
 @Data
 @Entity

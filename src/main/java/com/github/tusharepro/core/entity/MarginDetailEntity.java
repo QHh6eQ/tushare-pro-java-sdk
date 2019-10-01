@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 /**
  * 融资融券交易明细
+ * https://tushare.pro/document/2?doc_id=59
  */
 @Data
 @Entity
