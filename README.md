@@ -10,7 +10,7 @@ Tushare Pro Java SDK
 <dependency>
   <groupId>com.github.qhh6eq</groupId>
   <artifactId>tushare-pro-java-sdk</artifactId>
-  <version>2.0.1-RELEASE</version>
+  <version>2.0.2-RELEASE</version>
 </dependency>
 ```
 ```java

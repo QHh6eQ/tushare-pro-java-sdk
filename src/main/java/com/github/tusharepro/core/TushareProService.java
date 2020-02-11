@@ -618,6 +618,14 @@ public interface TushareProService {
     }
 
     /*
+     * 中债收益率曲线
+     * https://tushare.pro/document/2?doc_id=201
+     */
+    static <T extends YcCb> List<T> ycCb(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
      * 外汇基础信息（海外）
      * https://tushare.pro/document/2?doc_id=178
      */

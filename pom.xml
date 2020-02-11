@@ -6,7 +6,7 @@
 
     <groupId>com.github.qhh6eq</groupId>
     <artifactId>tushare-pro-java-sdk</artifactId>
-    <version>2.0.1-RELEASE</version>
+    <version>2.0.2-RELEASE</version>
 
     <name>tushare-pro-java-sdk</name>
     <description>tushare-pro-java-sdk</description>
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.10.1</version>
+            <version>2.10.2</version>
         </dependency>
 
         <dependency>

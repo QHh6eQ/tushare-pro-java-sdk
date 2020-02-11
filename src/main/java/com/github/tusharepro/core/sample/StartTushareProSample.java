@@ -4,7 +4,9 @@ import com.github.tusharepro.core.TusharePro;
 import com.github.tusharepro.core.TushareProService;
 import com.github.tusharepro.core.bean.StockBasic;
 import com.github.tusharepro.core.common.KeyValue;
+import com.github.tusharepro.core.entity.MoneyflowHsgtEntity;
 import com.github.tusharepro.core.entity.StockBasicEntity;
+import com.github.tusharepro.core.entity.YcCbEntity;
 import com.github.tusharepro.core.http.Request;
 
 import java.io.IOException;
@@ -15,9 +17,9 @@ import java.util.stream.Collectors;
 
 public class StartTushareProSample {
 
-//    public static void main(String[] args) throws IOException {
-//        start();
-//    }
+    public static void main(String[] args) throws IOException {
+        start();
+    }
 
     private static void start() throws IOException {
 
@@ -25,6 +27,18 @@ public class StartTushareProSample {
                 .setToken("**********");  // 你的token
 
         TusharePro.setGlobal(builder.build());  // 设置全局配置
+
+//        TushareProService.moneyflowHsgt(new Request<MoneyflowHsgtEntity>() {}
+//            .allFields()
+//            .param("trade_date", "20200210"))
+//            .forEach(System.out::println);
+
+//        TushareProService.ycCb(new Request<YcCbEntity>() {}
+//                .param("ts_code", "1001.CB")
+//                .param("curve_type", 1)
+//                .param("trade_date", "20200203")
+//                .allFields())
+//                .forEach(System.out::println);
 
         final KeyValue<String, String> list_status = StockBasic.Params.list_status.value("L");
 

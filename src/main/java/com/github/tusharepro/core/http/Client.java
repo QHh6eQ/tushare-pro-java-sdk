@@ -41,7 +41,7 @@ public class Client {
             Future<okhttp3.Response> responseFuture = requestExecutor.submit(() -> {
                 okhttp3.Request request = new okhttp3.Request.Builder()
                         .url("http://api.tushare.pro")
-                        .post(RequestBody.create(JSON, new ObjectMapper().writeValueAsBytes(requestJson)))
+                        .post(RequestBody.create(new ObjectMapper().writeValueAsBytes(requestJson), JSON))
                         .build();
                 return client.newCall(request).execute();
             });
@@ -69,19 +69,19 @@ public class Client {
             throw new IOException();
         }
 
-            for (int current = 0; current <= maxRetries; current++) {
-                try {
-                    return f(request, beanClass);
-                }
-                catch (Exception e) {
-                    if (timeUnit != null && timeOut != 0) {
-                        try {
-                            timeUnit.sleep(timeOut);
-                        } catch (InterruptedException e1) {
-                            e1.printStackTrace();
-                        }
+        for (int current = 0; current <= maxRetries; current++) {
+            try {
+                return f(request, beanClass);
+            }
+            catch (Exception e) {
+                if (timeUnit != null && timeOut != 0) {
+                    try {
+                        timeUnit.sleep(timeOut);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
                     }
                 }
+            }
         }
 
         throw new IOException();
