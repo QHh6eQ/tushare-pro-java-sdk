@@ -186,6 +186,14 @@ public interface TushareProService {
     }
 
     /*
+     * 国际指数
+     * https://tushare.pro/document/2?doc_id=211
+     */
+    static <T extends IndexGlobal> List<T> indexGlobal(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
      * 利润表
      * https://tushare.pro/document/2?doc_id=33
      */
@@ -486,6 +494,22 @@ public interface TushareProService {
      * https://tushare.pro/document/2?doc_id=118
      */
     static <T extends FundCompany> List<T> fundCompany(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
+     * 公募基金经理
+     * https://tushare.pro/document/2?doc_id=208
+     */
+    static <T extends FundManager> List<T> fundManager(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
+     * 基金规模数据
+     * https://tushare.pro/document/2?doc_id=207
+     */
+    static <T extends FundShare> List<T> fundShare(Request<T> request) throws IOException {
         return Client.beanList(request);
     }
 

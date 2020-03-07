@@ -10,7 +10,7 @@ Tushare Pro Java SDK
 <dependency>
   <groupId>com.github.qhh6eq</groupId>
   <artifactId>tushare-pro-java-sdk</artifactId>
-  <version>2.0.2-RELEASE</version>
+  <version>2.0.3-RELEASE</version>
 </dependency>
 ```
 ```java
@@ -40,7 +40,7 @@ for (final String value : new String[]{"L", "D", "P"}) {
 }
 ```
 ### 自定义映射
-- 映射类(如自带的Entity类)也可以自行实现, 只要implements对应的接口(可在祖先里; 不能出现多个BaseBean), 并且把Fields内部类下的字段全部在实现类中以小驼峰式声明(未来可能会支持自定义映射, 但不建议这么折腾)
+- 映射类(如自带的Entity类)也可以自行实现, 只要implements对应的接口(可在祖先里; 不能出现多个BaseBean), 并且把Fields内部类下的字段全部在实现类中以小驼峰式声明
 ```java
 public class MyStockBasic implements StockBasic {
     protected String tsCode;  // TS代码 对应 StockBasic.Fields.ts_code
@@ -49,6 +49,12 @@ public class MyStockBasic implements StockBasic {
 ```
 ```java
 final List<MyStockBasic> list = TushareProService.stockBasic(new Request<MyStockBasic>() {})
+```
+
+### 更换HTTP客户端
+- 如果想换配置或者换个客户端, 可以使用下面的方法. 需要用阻塞的方式编写
+```java
+new TusharePro.Builder().setHttpFunction(requestBytes -> responseBytes)
 ```
 
 ### 完整例子
@@ -68,10 +74,17 @@ TushareProService.stockBasic(new Request<StockBasicEntity>() {}  // 使用全局
         .param("is_hs", "H"))  // 参数
         .forEach(System.out::println);
 
+final OkHttpClient defaultHttpClient = new OkHttpClient.Builder()
+        .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE))
+        .connectTimeout(42, TimeUnit.SECONDS)
+        .writeTimeout(42, TimeUnit.SECONDS)
+        .readTimeout(42, TimeUnit.SECONDS)
+        .build();
+
 // 一个完整的例子
 TushareProService.stockBasic(
         new Request<StockBasicEntity>(builder.copy()  // 将配置拷贝
-                .setMaxRetries(5)  // 设置重试次数, 默认为0
+                .setMaxRetries(5)  // 设置重试次数, 默认为3
                 .setRetrySleepTimeUnit(TimeUnit.SECONDS)  // 设置重试sleep单位, 默认毫秒
                 .setRetrySleepTimeOut(60L)  // 设置重试sleep时间, 默认为0
                 .setRequestExecutor(Executors.newSingleThreadExecutor((r -> {
@@ -79,6 +92,20 @@ TushareProService.stockBasic(
                     thread.setDaemon(true);
                     return thread;
                 })))  // 设置请求线程池, 默认CachedThreadPool
+                .setHttpFunction(requestBytes -> {  // requestBytes -> function -> responseBytes 请使用阻塞的方式
+                    try {
+                        okhttp3.Request request = new okhttp3.Request.Builder()
+                                .url("http://api.tushare.pro")
+                                .post(RequestBody.create(requestBytes, MediaType.parse("application/json; charset=utf-8")))
+                                .build();
+
+                        return defaultHttpClient.newCall(request).execute().body().bytes();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                })
                 .build()){}
         .allFields()
         .param(StockBasic.Params.exchange.value("SZSE"))

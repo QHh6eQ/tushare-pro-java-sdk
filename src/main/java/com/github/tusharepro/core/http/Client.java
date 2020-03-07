@@ -6,10 +6,6 @@ import com.github.tusharepro.core.TusharePro;
 import com.github.tusharepro.core.bean.BaseBean;
 import com.github.tusharepro.core.util.TypeUtil;
 import com.github.tusharepro.core.util.Util;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 import java.io.IOException;
 import java.lang.reflect.*;
@@ -20,35 +16,24 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Client {
 
-    private static final OkHttpClient client = new OkHttpClient.Builder()
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .connectTimeout(42, TimeUnit.SECONDS)
-            .writeTimeout(42, TimeUnit.SECONDS)
-            .readTimeout(42, TimeUnit.SECONDS)
-            .build();
-
-    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
-    private static Response post(Request requestJson) throws IOException {
+    private static <T extends BaseBean> Response post(Request<T> requestJson) throws IOException {
         final TusharePro tusharePro = requestJson.tusharePro;
         final ExecutorService requestExecutor = tusharePro.requestExecutor;
+        final Function<byte[], byte[]> httpFunction = tusharePro.httpFunction;
 
         try {
-            Future<okhttp3.Response> responseFuture = requestExecutor.submit(() -> {
-                okhttp3.Request request = new okhttp3.Request.Builder()
-                        .url("http://api.tushare.pro")
-                        .post(RequestBody.create(new ObjectMapper().writeValueAsBytes(requestJson), JSON))
-                        .build();
-                return client.newCall(request).execute();
-            });
+            final Future<Response> responseFuture =
+                    requestExecutor.submit(() -> new ObjectMapper().readValue(
+                            httpFunction.apply(new ObjectMapper().writeValueAsBytes(requestJson)), new TypeReference<Response>() {}));
 
-            return new ObjectMapper().readValue(responseFuture.get().body().string(), new TypeReference<Response>() {});
+            return responseFuture.get();
         }
-        catch (IOException | InterruptedException | ExecutionException e) {
+        catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         throw new IOException();
@@ -59,7 +44,7 @@ public class Client {
         final int maxRetries = tusharePro.maxRetries;
         final TimeUnit timeUnit = tusharePro.retrySleepTimeUnit;
         final long timeOut = tusharePro.retrySleepTimeOut;
-        final Double integral = tusharePro.integral;
+//        final Double integral = tusharePro.integral;
 
         Class beanClass;
         try {
@@ -89,11 +74,11 @@ public class Client {
 
     private static <T extends BaseBean> List<T> f(Request<T> request, Class beanClass) throws IOException {
             return Optional.ofNullable(Client.post(request))
-                    .map(stockBasicResponse -> {
-                        List<String> fields = stockBasicResponse.getData().getFields().stream()
+                    .map(response -> {
+                        List<String> fields = response.getData().getFields().stream()
                                 .map(Util::camelName)
                                 .collect(Collectors.toList());
-                        List<List<?>> items = stockBasicResponse.getData().getItems();
+                        List<List<?>> items = response.getData().getItems();
 
                         List<T> beanList = new ArrayList<>(items.size());
 
@@ -117,6 +102,7 @@ public class Client {
 
                                     // 对时间进行特殊处理
                                     Object value = item.get(j);
+//                                    System.out.println(value == null ? null : value.getClass());
                                     switch (field.getType().getTypeName()) {
                                         case "java.time.LocalDate":
                                             value = value == null ? null : LocalDate.parse((String) value, DateTimeFormatter.BASIC_ISO_DATE);

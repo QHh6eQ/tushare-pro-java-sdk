@@ -4,16 +4,19 @@ import com.github.tusharepro.core.TusharePro;
 import com.github.tusharepro.core.TushareProService;
 import com.github.tusharepro.core.bean.StockBasic;
 import com.github.tusharepro.core.common.KeyValue;
+import com.github.tusharepro.core.entity.FundManagerEntity;
 import com.github.tusharepro.core.entity.MoneyflowHsgtEntity;
 import com.github.tusharepro.core.entity.StockBasicEntity;
 import com.github.tusharepro.core.entity.YcCbEntity;
 import com.github.tusharepro.core.http.Request;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class StartTushareProSample {
 
@@ -40,6 +43,11 @@ public class StartTushareProSample {
 //                .allFields())
 //                .forEach(System.out::println);
 
+//        TushareProService.fundManager(new Request<FundManagerEntity>() {}
+//            .allFields()
+//            .param("ts_code", "150018.SZ"))
+//            .forEach(System.out::println);
+
         final KeyValue<String, String> list_status = StockBasic.Params.list_status.value("L");
 
         // 打印 上海交易所所有上市的沪股通股票 信息
@@ -49,6 +57,10 @@ public class StartTushareProSample {
                 .param(list_status)  // 参数
                 .param("is_hs", "H"))  // 参数
                 .forEach(System.out::println);
+
+        final OkHttpClient defaultHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE))
+                .build();
 
         // 一个完整的例子
         TushareProService.stockBasic(
@@ -61,6 +73,20 @@ public class StartTushareProSample {
                             thread.setDaemon(true);
                             return thread;
                         })))  // 设置请求线程池, 默认CachedThreadPool
+                        .setHttpFunction(requestBytes -> {  // requestBytes -> function -> responseBytes 请使用阻塞的方式
+                            try {
+                                okhttp3.Request request = new okhttp3.Request.Builder()
+                                        .url("http://api.tushare.pro")
+                                        .post(RequestBody.create(requestBytes, MediaType.parse("application/json; charset=utf-8")))
+                                        .build();
+
+                                return defaultHttpClient.newCall(request).execute().body().bytes();
+                            }
+                            catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            return null;
+                        })
                         .build()){}
                 .allFields()
                 .param(StockBasic.Params.exchange.value("SZSE"))

@@ -1,9 +1,15 @@
 package com.github.tusharepro.core;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+
+import java.io.IOException;
 import java.util.concurrent.*;
+import java.util.function.Function;
 
 public class TusharePro {
-
 
     private static ExecutorService defaultRequestExecutor = Executors.newCachedThreadPool();
 
@@ -11,7 +17,15 @@ public class TusharePro {
 
     static {
         // ...
+//        Object o
     }
+
+    private static final OkHttpClient defaultHttpClient = new OkHttpClient.Builder()
+            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+            .connectTimeout(42, TimeUnit.SECONDS)
+            .writeTimeout(42, TimeUnit.SECONDS)
+            .readTimeout(42, TimeUnit.SECONDS)
+            .build();
 
     public static class Builder {
         private String token;
@@ -20,6 +34,35 @@ public class TusharePro {
         private TimeUnit retrySleepTimeUnit = TimeUnit.MILLISECONDS;  // 重试休眠单位, 默认毫秒
         private long retrySleepTimeOut = 0;  // 重试休眠时间 默认0
         private ExecutorService requestExecutor = defaultRequestExecutor;  // 请求线程池
+        private Function<byte[], byte[]> httpFunction = requestBytes -> {  // requestBytes -> function -> responseBytes 请使用阻塞的方式
+            try {
+                okhttp3.Request request = new okhttp3.Request.Builder()
+                        .url("http://api.tushare.pro")
+                        .post(RequestBody.create(requestBytes, MediaType.parse("application/json; charset=utf-8")))
+                        .build();
+
+                return defaultHttpClient.newCall(request).execute().body().bytes();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        };
+//        private Map<String, Function> defaultMapperMap = new HashMap<>();
+
+//        {
+//            addDefaultMapper(
+//                    (String value) -> LocalDate.parse(value, DateTimeFormatter.BASIC_ISO_DATE),
+//                    Double::valueOf,
+//                    Integer::valueOf
+//            );
+//            addDefaultMapper(
+//                    (Integer value) -> value
+//            );
+//            addDefaultMapper(
+//                    (Double value) -> value
+//            );
+//        }
 
         public Builder() {}
 
@@ -29,11 +72,12 @@ public class TusharePro {
                     .setMaxRetries(maxRetries)
                     .setRetrySleepTimeUnit(retrySleepTimeUnit)
                     .setRetrySleepTimeOut(retrySleepTimeOut)
-                    .setRequestExecutor(requestExecutor);
+                    .setRequestExecutor(requestExecutor)
+                    .setHttpFunction(httpFunction);
         }
 
         public TusharePro build() {
-            return new TusharePro(token, integral, maxRetries, retrySleepTimeUnit, retrySleepTimeOut, requestExecutor);
+            return new TusharePro(token, integral, maxRetries, retrySleepTimeUnit, retrySleepTimeOut, requestExecutor, httpFunction);
         }
 
         public String getToken() {
@@ -94,6 +138,26 @@ public class TusharePro {
             this.requestExecutor = requestExecutor;
             return this;
         }
+
+        public Function<byte[], byte[]> getHttpFunction() {
+            return httpFunction;
+        }
+
+        public Builder setHttpFunction(Function<byte[], byte[]> httpFunction) {
+            this.httpFunction = httpFunction;
+            return this;
+        }
+
+//        public Map<String, Function> getDefaultMapperMap() {
+//            return new HashMap<>(defaultMapperMap);
+//        }
+//
+//        @SafeVarargs
+//        public final <T, R> Builder addDefaultMapper(Function<T, R>... functions) {
+//            Arrays.stream(functions).forEach(function -> {});
+//            Arrays.stream(functions).forEach(function -> defaultMapperMap.put(function.toString(), function));
+//            return this;
+//        }
     }
 
     public final String token;
@@ -101,15 +165,20 @@ public class TusharePro {
     public final int maxRetries;  // 最大重试次数, 默认为0(不重试)
     public final TimeUnit retrySleepTimeUnit;  // 重试休眠单位, 默认毫秒
     public final long retrySleepTimeOut;  // 重试休眠时间 默认0
-    public final ExecutorService requestExecutor;
+    public final ExecutorService requestExecutor;  // 请求线程池
+    public final Function<byte[], byte[]> httpFunction;  // requestBytes -> function -> responseBytes 请使用阻塞的方式
 
-    public TusharePro(String token, Double integral, int maxRetries, TimeUnit retrySleepTimeUnit, long retrySleepTimeOut, ExecutorService requestExecutor) {
+    public TusharePro(
+            String token, Double integral, int maxRetries, TimeUnit retrySleepTimeUnit, long retrySleepTimeOut, ExecutorService requestExecutor,
+            Function<byte[], byte[]> httpFunction
+    ) {
         this.token = token;
         this.integral = integral;
         this.maxRetries = maxRetries;
         this.retrySleepTimeUnit = retrySleepTimeUnit;
         this.retrySleepTimeOut = retrySleepTimeOut;
         this.requestExecutor = requestExecutor;
+        this.httpFunction = httpFunction;
     }
 
     public static synchronized TusharePro getGlobal() {
