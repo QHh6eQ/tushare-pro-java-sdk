@@ -10,7 +10,7 @@ Tushare Pro Java SDK
 <dependency>
   <groupId>com.github.qhh6eq</groupId>
   <artifactId>tushare-pro-java-sdk</artifactId>
-  <version>2.0.3-RELEASE</version>
+  <version>2.0.4-RELEASE</version>
 </dependency>
 ```
 ```java
@@ -96,7 +96,7 @@ TushareProService.stockBasic(
                     try {
                         okhttp3.Request request = new okhttp3.Request.Builder()
                                 .url("http://api.tushare.pro")
-                                .post(RequestBody.create(requestBytes, MediaType.parse("application/json; charset=utf-8")))
+                                .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), requestBytes))
                                 .build();
 
                         return defaultHttpClient.newCall(request).execute().body().bytes();

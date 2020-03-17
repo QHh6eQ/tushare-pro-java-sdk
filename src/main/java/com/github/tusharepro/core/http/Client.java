@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 
 public class Client {
 
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
     private static <T extends BaseBean> Response post(Request<T> requestJson) throws IOException {
         final TusharePro tusharePro = requestJson.tusharePro;
         final ExecutorService requestExecutor = tusharePro.requestExecutor;
@@ -28,8 +30,8 @@ public class Client {
 
         try {
             final Future<Response> responseFuture =
-                    requestExecutor.submit(() -> new ObjectMapper().readValue(
-                            httpFunction.apply(new ObjectMapper().writeValueAsBytes(requestJson)), new TypeReference<Response>() {}));
+                    requestExecutor.submit(() -> objectMapper.readValue(
+                            httpFunction.apply(objectMapper.writeValueAsBytes(requestJson)), new TypeReference<Response>() {}));
 
             return responseFuture.get();
         }

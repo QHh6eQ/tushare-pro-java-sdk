@@ -11,8 +11,6 @@ import java.util.function.Function;
 
 public class TusharePro {
 
-    private static ExecutorService defaultRequestExecutor = Executors.newCachedThreadPool();
-
     private static TusharePro GLOBAL;
 
     static {
@@ -20,28 +18,30 @@ public class TusharePro {
 //        Object o
     }
 
-    private static final OkHttpClient defaultHttpClient = new OkHttpClient.Builder()
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
-            .connectTimeout(42, TimeUnit.SECONDS)
-            .writeTimeout(42, TimeUnit.SECONDS)
-            .readTimeout(42, TimeUnit.SECONDS)
-            .build();
-
     public static class Builder {
+        private static final String API_URL = "http://api.tushare.pro";
+        private static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");
+        private static final OkHttpClient DEFAULT_HTTP_CLIENT = new OkHttpClient.Builder()
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+                .connectTimeout(42, TimeUnit.SECONDS)
+                .writeTimeout(42, TimeUnit.SECONDS)
+                .readTimeout(42, TimeUnit.SECONDS)
+                .build();
+
         private String token;
         private Double integral;  // 积分 暂时没有使用
         private int maxRetries = 0;  // 最大重试次数, 默认为0(不重试)
         private TimeUnit retrySleepTimeUnit = TimeUnit.MILLISECONDS;  // 重试休眠单位, 默认毫秒
         private long retrySleepTimeOut = 0;  // 重试休眠时间 默认0
-        private ExecutorService requestExecutor = defaultRequestExecutor;  // 请求线程池
+        private ExecutorService requestExecutor = Executors.newCachedThreadPool();  // 请求线程池
         private Function<byte[], byte[]> httpFunction = requestBytes -> {  // requestBytes -> function -> responseBytes 请使用阻塞的方式
             try {
                 okhttp3.Request request = new okhttp3.Request.Builder()
-                        .url("http://api.tushare.pro")
-                        .post(RequestBody.create(requestBytes, MediaType.parse("application/json; charset=utf-8")))
+                        .url(API_URL)
+                        .post(RequestBody.create(MEDIA_TYPE, requestBytes))
                         .build();
 
-                return defaultHttpClient.newCall(request).execute().body().bytes();
+                return DEFAULT_HTTP_CLIENT.newCall(request).execute().body().bytes();
             }
             catch (IOException e) {
                 e.printStackTrace();

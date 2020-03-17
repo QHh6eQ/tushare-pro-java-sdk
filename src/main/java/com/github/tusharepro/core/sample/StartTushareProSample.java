@@ -77,7 +77,7 @@ public class StartTushareProSample {
                             try {
                                 okhttp3.Request request = new okhttp3.Request.Builder()
                                         .url("http://api.tushare.pro")
-                                        .post(RequestBody.create(requestBytes, MediaType.parse("application/json; charset=utf-8")))
+                                        .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), requestBytes))
                                         .build();
 
                                 return defaultHttpClient.newCall(request).execute().body().bytes();
