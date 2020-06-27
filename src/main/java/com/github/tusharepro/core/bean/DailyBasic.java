@@ -17,11 +17,13 @@ public interface DailyBasic extends BaseBean {
         String turnover_rate = "turnover_rate";  // 换手率（%）
         String turnover_rate_f = "turnover_rate_f";  // 换手率（自由流通股）
         String volume_ratio = "volume_ratio";  // 量比
-        String pe = "pe";  // 市盈率（总市值/净利润）
-        String pe_ttm = "pe_ttm";  // 市盈率（TTM）
+        String pe = "pe";  // 市盈率（总市值/净利润， 亏损的PE为空）
+        String pe_ttm = "pe_ttm";  // 市盈率（TTM，亏损的PE为空）
         String pb = "pb";  // 市净率（总市值/净资产）
         String ps = "ps";  // 市销率
         String ps_ttm = "ps_ttm";  // 市销率（TTM）
+        String dv_ratio = "dv_ratio";  // 股息率 （%）
+        String dv_ttm = "dv_ttm";  // 股息率（TTM）（%）
         String total_share = "total_share";  // 总股本 （万股）
         String float_share = "float_share";  // 流通股本 （万股）
         String free_share = "free_share";  // 自由流通股本 （万）

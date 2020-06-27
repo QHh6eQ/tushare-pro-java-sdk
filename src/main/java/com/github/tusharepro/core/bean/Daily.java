@@ -26,12 +26,12 @@ public interface Daily extends BaseBean {
 
     interface Params {
 
-        ts_code ts_code = new ts_code();  // 股票代码（二选一）
+        ts_code ts_code = new ts_code();  // 股票代码（支持多个股票同时提取，逗号分隔）
         class ts_code extends BaseRequestParam {
             {key = "ts_code";}
         }
 
-        trade_date trade_date = new trade_date();  // 交易日期（二选一）
+        trade_date trade_date = new trade_date();  // 交易日期（YYYYMMDD）
         class trade_date extends BaseRequestParam {
             {key = "trade_date";}
         }

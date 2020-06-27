@@ -6,6 +6,7 @@ import com.github.tusharepro.core.http.BaseRequestParam;
  * 中债收益率曲线
  * https://tushare.pro/document/2?doc_id=201
  */
+@Deprecated
 public interface YcCb extends BaseBean {
 
     String API_NAME = "yc_cb";

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * 停复牌信息
+ * 停复牌信息(停)
  * https://tushare.pro/document/2?doc_id=31
  */
 @Data

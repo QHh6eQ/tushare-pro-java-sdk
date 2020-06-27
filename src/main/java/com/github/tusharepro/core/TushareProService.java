@@ -106,10 +106,18 @@ public interface TushareProService {
     }
 
     /*
-     * 停复牌信息
+     * 停复牌信息(停)
      * https://tushare.pro/document/2?doc_id=31
      */
     static <T extends Suspend> List<T> suspend(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
+     * 每日停复牌信息
+     * https://tushare.pro/document/2?doc_id=214
+     */
+    static <T extends SuspendD> List<T> suspendD(Request<T> request) throws IOException {
         return Client.beanList(request);
     }
 
@@ -182,14 +190,6 @@ public interface TushareProService {
      * https://tushare.pro/document/2?doc_id=197
      */
     static <T extends GgtMonthly> List<T> ggtMonthly(Request<T> request) throws IOException {
-        return Client.beanList(request);
-    }
-
-    /*
-     * 国际指数
-     * https://tushare.pro/document/2?doc_id=211
-     */
-    static <T extends IndexGlobal> List<T> indexGlobal(Request<T> request) throws IOException {
         return Client.beanList(request);
     }
 
@@ -482,6 +482,22 @@ public interface TushareProService {
     }
 
     /*
+     * 市场交易统计
+     * https://tushare.pro/document/2?doc_id=215
+     */
+    static <T extends DailyInfo> List<T> dailyInfo(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
+     * 国际指数
+     * https://tushare.pro/document/2?doc_id=211
+     */
+    static <T extends IndexGlobal> List<T> indexGlobal(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
      * 公募基金列表
      * https://tushare.pro/document/2?doc_id=19
      */
@@ -602,6 +618,14 @@ public interface TushareProService {
     }
 
     /*
+     * 期货主要品种交易周报
+     * https://tushare.pro/document/2?doc_id=216
+     */
+    static <T extends FutWeeklyDetail> List<T> futWeeklyDetail(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
      * 期权合约信息
      * https://tushare.pro/document/2?doc_id=158
      */
@@ -614,6 +638,15 @@ public interface TushareProService {
      * https://tushare.pro/document/2?doc_id=159
      */
     static <T extends OptDaily> List<T> optDaily(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
+     * 期货期权TICK数据
+     * 本数据归属上海中期期货有限公司，具备该公司交易账号才可以获取
+     * https://tushare.pro/document/2?doc_id=235
+     */
+    static <T extends FtTick> List<T> ftTick(Request<T> request) throws IOException {
         return Client.beanList(request);
     }
 
@@ -645,12 +678,29 @@ public interface TushareProService {
      * 中债收益率曲线
      * https://tushare.pro/document/2?doc_id=201
      */
+    @Deprecated
     static <T extends YcCb> List<T> ycCb(Request<T> request) throws IOException {
+            return Client.beanList(request);
+        }
+
+    /*
+     * 可转债转股价变动
+     * https://tushare.pro/document/2?doc_id=246
+     */
+    static <T extends CbPriceChg> List<T> cbPriceChg(Request<T> request) throws IOException {
         return Client.beanList(request);
     }
 
     /*
-     * 外汇基础信息（海外）
+     * 财经日历
+     * https://tushare.pro/document/2?doc_id=233
+     */
+    static <T extends EcoCal> List<T> ecoCal(Request<T> request) throws IOException {
+        return Client.beanList(request);
+    }
+
+    /*
+     * 外汇基础信息(海外)
      * https://tushare.pro/document/2?doc_id=178
      */
     static <T extends FxObasic> List<T> fxObasic(Request<T> request) throws IOException {

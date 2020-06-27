@@ -31,7 +31,7 @@ public interface Weekly extends BaseBean {
             {key = "ts_code";}
         }
 
-        trade_date trade_date = new trade_date();  // 交易日期 （每周五日期，YYYYMMDD格式）
+        trade_date trade_date = new trade_date();  // 交易日期 （每周最后一个交易日期，YYYYMMDD格式）
         class trade_date extends BaseRequestParam {
             {key = "trade_date";}
         }

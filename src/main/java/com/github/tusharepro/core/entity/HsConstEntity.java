@@ -13,9 +13,7 @@ import java.time.LocalDate;
  */
 @Data
 @Entity
-@Table(name = "hs_const"
-//        indexes = {@Index(columnList = "is_new")}
-        )
+@Table(name = "hs_const")
 @IdClass(HsConstEntity.PrimaryKey.class)
 public class HsConstEntity implements HsConst {
 

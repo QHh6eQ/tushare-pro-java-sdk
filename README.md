@@ -10,7 +10,7 @@ Tushare Pro Java SDK
 <dependency>
   <groupId>com.github.qhh6eq</groupId>
   <artifactId>tushare-pro-java-sdk</artifactId>
-  <version>2.0.4-RELEASE</version>
+  <version>2.0.5-RELEASE</version>
 </dependency>
 ```
 ```java
@@ -52,7 +52,7 @@ final List<MyStockBasic> list = TushareProService.stockBasic(new Request<MyStock
 ```
 
 ### 更换HTTP客户端
-- 如果想换配置或者换个客户端, 可以使用下面的方法. 需要用阻塞的方式编写
+- 如果想换配置或者换个客户端, 可以使用下面的方法
 ```java
 new TusharePro.Builder().setHttpFunction(requestBytes -> responseBytes)
 ```

@@ -3,7 +3,7 @@ package com.github.tusharepro.core.bean;
 import com.github.tusharepro.core.http.BaseRequestParam;
 
 /**
- * 外汇基础信息（海外）
+ * 外汇基础信息(海外)
  * https://tushare.pro/document/2?doc_id=178
  */
 public interface FxObasic extends BaseBean {

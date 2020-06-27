@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
- * 外汇基础信息（海外）
+ * 外汇基础信息(海外)
  * https://tushare.pro/document/2?doc_id=178
  */
 @Data

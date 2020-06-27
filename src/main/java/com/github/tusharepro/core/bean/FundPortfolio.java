@@ -27,6 +27,21 @@ public interface FundPortfolio extends BaseBean {
         class ts_code extends BaseRequestParam {
             {key = "ts_code";}
         }
+
+        ann_date ann_date = new ann_date();  // 公告日期
+        class ann_date extends BaseRequestParam {
+            {key = "ann_date";}
+        }
+
+        start_date start_date = new start_date();  // 报告期开始日期
+        class start_date extends BaseRequestParam {
+            {key = "start_date";}
+        }
+
+        end_date end_date = new end_date();  // 报告期结束日期
+        class end_date extends BaseRequestParam {
+            {key = "end_date";}
+        }
     }
 
 }

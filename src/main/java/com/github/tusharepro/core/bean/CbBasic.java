@@ -28,6 +28,7 @@ public interface CbBasic extends BaseBean {
         String add_rate = "add_rate";  // 补偿利率（%）
         String pay_per_year = "pay_per_year";  // 年付息次数
         String list_date = "list_date";  // 上市日期
+        String delist_date = "delist_date";  // 摘牌日
         String exchange = "exchange";  // 上市地点
         String conv_start_date = "conv_start_date";  // 转股起始日
         String conv_end_date = "conv_end_date";  // 转股截止日
@@ -35,6 +36,7 @@ public interface CbBasic extends BaseBean {
         String conv_price = "conv_price";  // 最新转股价
         String rate_clause = "rate_clause";  // 利率说明
         String put_clause = "put_clause";  // 赎回条款
+        String maturity_put_price = "maturity_put_price";  // 到期赎回价格(含税)
         String call_clause = "call_clause";  // 回售条款
         String reset_clause = "reset_clause";  // 特别向下修正条款
         String conv_clause = "conv_clause";  // 转股条款

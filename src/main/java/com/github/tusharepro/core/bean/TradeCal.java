@@ -19,7 +19,7 @@ public interface TradeCal extends BaseBean {
 
     interface Params {
 
-        exchange exchange = new exchange();  // 交易所 SSE上交所 SZSE深交所
+        exchange exchange = new exchange();  // 交易所 SSE上交所,SZSE深交所,CFFEX 中金所,SHFE 上期所,CZCE 郑商所,DCE 大商所,INE 上能源,IB 银行间,XHKG  港交所
         class exchange extends BaseRequestParam {
             {key = "exchange";}
         }

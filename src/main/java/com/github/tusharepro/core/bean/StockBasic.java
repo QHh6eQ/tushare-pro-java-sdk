@@ -34,7 +34,7 @@ public interface StockBasic extends BaseBean {
             {key = "is_hs";}
         }
 
-        list_status list_status = new list_status();  // 上市状态： L上市 D退市 P暂停上市
+        list_status list_status = new list_status();  // 上市状态： L上市 D退市 P暂停上市，默认L
         class list_status extends BaseRequestParam {
             {key = "list_status";}
         }

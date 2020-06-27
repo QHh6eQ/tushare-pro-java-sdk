@@ -28,6 +28,11 @@ public interface IndexBasic extends BaseBean {
 
     interface Params {
 
+        ts_code ts_code = new ts_code();  // 指数代码
+        class ts_code extends BaseRequestParam {
+            {key = "ts_code";}
+        }
+
         market market = new market();  // 交易所或服务商
         class market extends BaseRequestParam {
             {key = "market";}

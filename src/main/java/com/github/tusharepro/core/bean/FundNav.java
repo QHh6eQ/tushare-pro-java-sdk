@@ -33,6 +33,11 @@ public interface FundNav extends BaseBean {
         class end_date extends BaseRequestParam {
             {key = "end_date";}
         }
+
+        market market = new market();  // E场内 O场外
+        class market extends BaseRequestParam {
+            {key = "market";}
+        }
     }
 
 }

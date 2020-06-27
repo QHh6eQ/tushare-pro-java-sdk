@@ -26,6 +26,7 @@ public class MarginDetailEntity implements MarginDetail {
     @Column(name = "trade_date") protected LocalDate tradeDate;  // 交易日期
     @Id
     @Column(name = "ts_code") protected String tsCode;  // TS股票代码
+    @Column(name = "name") protected String name;  // 股票名称 （20190910后有数据）
     @Column(name = "rzye") protected Double rzye;  // 融资余额(元)
     @Column(name = "rqye") protected Double rqye;  // 融券余额(元)
     @Column(name = "rzmre") protected Double rzmre;  // 融资买入额(元)

@@ -30,11 +30,13 @@ public class DailyBasicEntity implements DailyBasic {
     @Column(name = "turnover_rate") protected Double turnoverRate;  // 换手率（%）
     @Column(name = "turnover_rate_f") protected Double turnoverRateF;  // 换手率（自由流通股）
     @Column(name = "volume_ratio") protected Double volumeRatio;  // 量比
-    @Column(name = "pe") protected Double pe;  // 市盈率（总市值/净利润）
-    @Column(name = "pe_ttm") protected Double peTtm;  // 市盈率（TTM）
+    @Column(name = "pe") protected Double pe;  // 市盈率（总市值/净利润， 亏损的PE为空）
+    @Column(name = "pe_ttm") protected Double peTtm;  // 市盈率（TTM，亏损的PE为空）
     @Column(name = "pb") protected Double pb;  // 市净率（总市值/净资产）
     @Column(name = "ps") protected Double ps;  // 市销率
     @Column(name = "ps_ttm") protected Double psTtm;  // 市销率（TTM）
+    @Column(name = "dv_ratio") protected Double dvRatio;  // 股息率 （%）
+    @Column(name = "dv_ttm") protected Double dvTtm;  // 股息率（TTM）（%）
     @Column(name = "total_share") protected Double totalShare;  // 总股本 （万股）
     @Column(name = "float_share") protected Double floatShare;  // 流通股本 （万股）
     @Column(name = "free_share") protected Double freeShare;  // 自由流通股本 （万）

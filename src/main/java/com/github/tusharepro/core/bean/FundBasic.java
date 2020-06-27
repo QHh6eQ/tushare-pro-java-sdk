@@ -44,6 +44,11 @@ public interface FundBasic extends BaseBean {
         class market extends BaseRequestParam {
             {key = "market";}
         }
+
+        status status = new status();  // 存续状态 D摘牌 I发行 L上市中
+        class status extends BaseRequestParam {
+            {key = "status";}
+        }
     }
 
 }

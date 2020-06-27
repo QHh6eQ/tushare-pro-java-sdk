@@ -73,7 +73,7 @@ public class StartTushareProSample {
                             thread.setDaemon(true);
                             return thread;
                         })))  // 设置请求线程池, 默认CachedThreadPool
-                        .setHttpFunction(requestBytes -> {  // requestBytes -> function -> responseBytes 请使用阻塞的方式
+                        .setHttpFunction(requestBytes -> {  // requestBytes -> function -> responseBytes
                             try {
                                 okhttp3.Request request = new okhttp3.Request.Builder()
                                         .url("http://api.tushare.pro")

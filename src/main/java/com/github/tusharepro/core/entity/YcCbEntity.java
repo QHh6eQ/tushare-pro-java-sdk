@@ -11,6 +11,7 @@ import java.time.LocalDate;
  * 中债收益率曲线
  * https://tushare.pro/document/2?doc_id=201
  */
+@Deprecated
 @Data
 @Entity
 @Table(name = "yc_cb")

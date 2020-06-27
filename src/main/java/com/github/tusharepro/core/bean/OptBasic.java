@@ -33,6 +33,11 @@ public interface OptBasic extends BaseBean {
 
     interface Params {
 
+        ts_code ts_code = new ts_code();  // TS期权代码
+        class ts_code extends BaseRequestParam {
+            {key = "ts_code";}
+        }
+
         exchange exchange = new exchange();  // 交易所代码 （包括上交所SSE等<a href="https://tushare.pro/document/2?doc_id=157">交易所</a>）
         class exchange extends BaseRequestParam {
             {key = "exchange";}

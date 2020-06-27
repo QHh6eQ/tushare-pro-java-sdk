@@ -33,6 +33,7 @@ public class CbBasicEntity implements CbBasic {
     @Column(name = "add_rate") protected Double addRate;  // 补偿利率（%）
     @Column(name = "pay_per_year") protected Integer payPerYear;  // 年付息次数
     @Column(name = "list_date") protected LocalDate listDate;  // 上市日期
+    @Column(name = "delist_date") protected LocalDate delistDate;  // 摘牌日期
     @Column(name = "exchange") protected String exchange;  // 上市地点
     @Column(name = "conv_start_date") protected LocalDate convStartDate;  // 转股起始日
     @Column(name = "conv_end_date") protected LocalDate convEndDate;  // 转股截止日
@@ -40,6 +41,7 @@ public class CbBasicEntity implements CbBasic {
     @Column(name = "conv_price") protected Double convPrice;  // 最新转股价
     @Column(name = "rate_clause") protected String rateClause;  // 利率说明
     @Column(name = "put_clause") protected String putClause;  // 赎回条款
+    @Column(name = "maturity_put_price") protected String maturityPutPrice;  // 到期赎回价格(含税)
     @Column(name = "call_clause") protected String callClause;  // 回售条款
     @Column(name = "reset_clause") protected String resetClause;  // 特别向下修正条款
     @Column(name = "conv_clause") protected String convClause;  // 转股条款

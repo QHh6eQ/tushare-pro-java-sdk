@@ -34,7 +34,7 @@ public class TusharePro {
         private TimeUnit retrySleepTimeUnit = TimeUnit.MILLISECONDS;  // 重试休眠单位, 默认毫秒
         private long retrySleepTimeOut = 0;  // 重试休眠时间 默认0
         private ExecutorService requestExecutor = Executors.newCachedThreadPool();  // 请求线程池
-        private Function<byte[], byte[]> httpFunction = requestBytes -> {  // requestBytes -> function -> responseBytes 请使用阻塞的方式
+        private Function<byte[], byte[]> httpFunction = requestBytes -> {  // requestBytes -> function -> responseBytes
             try {
                 okhttp3.Request request = new okhttp3.Request.Builder()
                         .url(API_URL)
@@ -166,7 +166,7 @@ public class TusharePro {
     public final TimeUnit retrySleepTimeUnit;  // 重试休眠单位, 默认毫秒
     public final long retrySleepTimeOut;  // 重试休眠时间 默认0
     public final ExecutorService requestExecutor;  // 请求线程池
-    public final Function<byte[], byte[]> httpFunction;  // requestBytes -> function -> responseBytes 请使用阻塞的方式
+    public final Function<byte[], byte[]> httpFunction;  // requestBytes -> function -> responseBytes
 
     public TusharePro(
             String token, Double integral, int maxRetries, TimeUnit retrySleepTimeUnit, long retrySleepTimeOut, ExecutorService requestExecutor,

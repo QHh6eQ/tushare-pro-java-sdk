@@ -25,7 +25,7 @@ public class PledgeStatEntity implements PledgeStat {
     @Id
     @Column(name = "ts_code") protected String tsCode;  // TS代码
     @Id
-    @Column(name = "end_date") protected LocalDate endDate;  // 截至日期
+    @Column(name = "end_date") protected LocalDate endDate;  // 截止日期
     @Column(name = "pledge_count") protected Integer pledgeCount;  // 质押次数
     @Column(name = "unrest_pledge") protected Double unrestPledge;  // 无限售股质押数量（万）
     @Column(name = "rest_pledge") protected Double restPledge;  // 限售股份质押数量（万）
